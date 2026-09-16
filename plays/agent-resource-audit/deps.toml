@@ -1,0 +1,40 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; all three resource scripts are stdlib-only (subprocess, json, os, sys, platform). enumerate.py shells out to ps, present on every macOS and Linux host; sysmem.py shells out to sysctl on macOS only, and reads /proc/meminfo directly on Linux, so it needs no extra tool there."
+
+[[tools]]
+id = "sysctl"
+command = "sysctl"
+required = false
+
+[[tools.install]]
+manager = "system"
+notes = "macOS builtin; only invoked on Darwin and only one way: `sysctl -n hw.memsize` (total physical memory, for the percent-of-RAM figure). Linux never calls it -- MemTotal comes from /proc/meminfo instead. Missing binary, nonzero exit, timeout, or unparseable output degrades that one figure to a labeled unknown carrying the reason; the audit itself never fails on it."
+
+[[tools]]
+id = "ps"
+command = "ps"
+required = true
+
+[[tools.install]]
+manager = "apt"
+package = "procps"
+
+[[tools.install]]
+manager = "system"
+notes = "Base-install binary on macOS and full Linux distros, but NOT present in slim/minimal container images (debian-slim, alpine) -- install procps there. Unlike this fleet's mcp-doctor and mcp-context-tax, where ps only verifies a process group is clear and its absence merely makes shutdown less gentle, here ps IS the enumeration: it is called exactly once, as `ps -axo pid=,ppid=,rss=,pcpu=,etime=,args=`, and every row this play reports comes from that one read. So it is required = true and its failure is a hard fault (enumerate.py exits 2 naming the reason), never a silent empty result -- a BusyBox ps that does not support the -axo keyword format fails the same way, with the required format named in the error. Nothing is ever signaled: ps is run with no internal timeout or kill of its own, and this script issues no signal to any pid it reads. Declared as its own entry after a dependency audit found it reached but undeclared -- the previous sweep had missed it because the argv is bound to a variable before it reaches Popen."

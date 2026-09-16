@@ -1,0 +1,1 @@
+{"id": 1, "path": "/home/demo/python/3.11/bin/python3", "timeout_s": 5, "host": "pypi.org", "port": 443, "ok": false, "verdict": "cert_verify_failed", "error_class": "SSLCertVerificationError", "error_category": "cert", "error_message": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1002)", "elapsed_ms": 64}

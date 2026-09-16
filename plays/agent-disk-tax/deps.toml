@@ -1,0 +1,18 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; both resource scripts are stdlib-only (discover_cats.py: json, os, sys, datetime; measure_cat.py: heapq, json, os, stat, sys, time, datetime). No `du` binary or any other external tool -- disk usage is measured with a pure os.walk so the deadline-honesty behavior (partial results, never a silent truncation) is entirely under this play's own control rather than a subprocess's. Both scripts are read-only and make zero network calls."

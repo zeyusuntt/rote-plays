@@ -1,0 +1,18 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; all three resource scripts are stdlib-only (json, os, sys, glob, time, datetime). No external tool is shelled out to -- locate.py, digest_claude.py, and digest_codex.py only read local transcript files under ~/.claude/projects and ~/.codex/sessions."

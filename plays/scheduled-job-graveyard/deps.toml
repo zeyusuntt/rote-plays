@@ -1,0 +1,58 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; both resource scripts are stdlib-only (subprocess, json, os, re, sys, time, platform). enum_jobs.py shells out to crontab and launchctl on macOS/Linux (crontab) and systemctl --user on Linux, all standard on those platforms; classify_jobs.py is pure computation over enum_jobs's output and touches no process or network."
+
+[[tools]]
+id = "plutil"
+command = "plutil"
+required = false
+
+[[tools.install]]
+manager = "system"
+notes = "macOS-builtin (part of the base OS, not a package). Only used to parse ~/Library/LaunchAgents/*.plist into JSON. Optional: on a host without it (non-macOS, or a stripped-down macOS image) enum_jobs.py degrades the user_launchagents source with a warning instead of failing the whole play -- Linux has no LaunchAgents concept at all, so the source is simply absent there, not degraded."
+
+[[tools]]
+id = "crontab"
+command = "crontab"
+required = false
+
+[[tools.install]]
+manager = "apt"
+package = "cron"
+
+[[tools.install]]
+manager = "system"
+notes = "Read exactly one way: `crontab -l` (list only, never edit/install/remove). 'no crontab for <user>' is the normal absence and reads as zero jobs with no warning; the binary missing, a timeout, or any other nonzero exit degrades the cron source with a warning naming the reason rather than failing the run."
+
+[[tools]]
+id = "launchctl"
+command = "launchctl"
+required = false
+
+[[tools.install]]
+manager = "system"
+notes = "macOS builtin; never invoked on Linux. Read exactly one way: `launchctl list` (never load/unload/start/stop/kickstart). Missing, erroring, or timing out degrades the launchd source with a warning; header-based column parsing counts and reports rejected rows instead of silently dropping them."
+
+[[tools]]
+id = "systemctl"
+command = "systemctl"
+required = false
+
+[[tools.install]]
+manager = "system"
+notes = "Linux/systemd only; never invoked on macOS, and guarded by shutil.which() before any call. Read exactly two ways: `systemctl --user list-timers --all --no-legend --no-pager` and `systemctl --user cat <unit>` (never start/stop/enable/disable/daemon-reload). A non-systemd host, a missing user session, an error, or a timeout degrades the timer source with a warning naming the reason rather than failing the run."

@@ -1,0 +1,1 @@
+{"ok": true, "scanned": 4, "findings": [{"sha7": "8e4a5bb", "class": "body-mark", "pattern": "generated-with:claude", "line_redacted": "\ud83e\udd16 Generated with [Claude Code](https://claude.com/claude-code)"}, {"sha7": "eef5af9", "class": "trailer", "pattern": "co-authored-by:claude", "line_redacted": "Co-authored-by: Claude <noreply@anthropic.com>"}]}

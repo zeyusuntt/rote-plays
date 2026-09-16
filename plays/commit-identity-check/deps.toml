@@ -1,0 +1,35 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; both resource scripts are stdlib-only (subprocess, json, os, re, sys, shutil, time, collections, concurrent.futures)."
+
+[[tools]]
+id = "git"
+command = "git"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "git"
+
+[[tools.install]]
+manager = "apt"
+package = "git"
+
+[[tools.install]]
+manager = "system"
+notes = "Git 2.26+ on PATH -- the floor for `git config --show-scope`, which this play relies on (alongside --show-origin, available since git 1.8.x) to report which scope produced the winning user.name/user.email value, never re-derived by hand. Only read commands are issued -- config --get, rev-parse --verify -q HEAD, log --first-parent -5 --format=%ae -- always with --no-optional-locks and a scrubbed environment. git missing from PATH entirely is the one condition that fails the scan_identities step closed; a single unreadable repository degrades to a labeled unknown row instead."

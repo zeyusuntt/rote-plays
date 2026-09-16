@@ -1,0 +1,8 @@
+schema_version: 1
+kind: process.exec
+status:
+  exit: { kind: code, code: 0 }
+  duration_ms: 506
+  timeout_ms: 75000
+stdout: resources/presentation-fixtures/fetch_registry/stdout.json
+stderr: resources/presentation-fixtures/fetch_registry/stderr.txt

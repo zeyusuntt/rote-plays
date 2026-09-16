@@ -1,0 +1,44 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; both resource scripts are stdlib-only (subprocess, json, os, sys, re, shutil, platform, plistlib, datetime, concurrent.futures)."
+
+[[tools]]
+id = "git"
+command = "git"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "git"
+
+[[tools.install]]
+manager = "apt"
+package = "git"
+
+[[tools.install]]
+manager = "system"
+notes = "Any git 2.13+ on PATH (the floor for status --porcelain=v2 --branch, matching the repo-sweep contract). Only read commands are issued -- status, stash list, for-each-ref, rev-list --count -- always with --no-optional-locks and a scrubbed environment. git missing from PATH entirely is the one condition that fails the sweep_loss step closed; a single unreadable repository degrades to a labeled unknown row instead."
+
+[[tools]]
+id = "tmutil"
+command = "tmutil"
+required = false
+
+[[tools.install]]
+manager = "system"
+notes = "macOS builtin (the Time Machine CLI); not installable via brew or apt, and this play never tries. Only consulted on Darwin, never with sudo, and this play never asks tmutil to start/stop/delete a backup (latestbackup -t, destinationinfo -X). This is not a no-network guarantee: Apple's own tmutil may mount an already-configured network backup destination as a side effect of a latestbackup query, outside this play's control. Its absence, an error, or Time Machine simply never being configured all degrade backup_status to a labeled unknown rather than failing the play; a destinationinfo command failure, timeout, or Full Disk Access denial is reported as its own distinct state, never collapsed into 'no destination configured'. On Linux the same step checks only for an obvious borg/restic/timeshift binary or state path instead; on any other platform the answer is an honest unknown."

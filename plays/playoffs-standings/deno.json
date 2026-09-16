@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "__ROTE_PRESENTATION_SDK__": "../../lib/sdk/ts/presentation.ts"
+  }
+}

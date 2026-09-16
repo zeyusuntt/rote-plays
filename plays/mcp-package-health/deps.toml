@@ -1,0 +1,35 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; both resource scripts are stdlib-only (discover_packages.py: json, os, re, sys, datetime; fetch_registry.py: json, os, shutil, subprocess, sys, tempfile, datetime, urllib.parse). Reading ~/.codex/config.toml needs the stdlib tomllib module, which only ships from Python 3.11 onward -- on an older interpreter that one config source degrades to a narrow fallback TOML reader (ported unchanged from mcp-doctor's discover.py) instead of losing codex coverage; every other config source is unaffected. discover_packages.py never spawns anything and makes no network call of any kind -- it only reads local config files and resolves package names from their command/args. Only fetch_registry.py talks to the network, and only via the curl binary declared below (shutil.which is used only to locate that binary on THIS machine's PATH, never to spawn anything itself); this play never uses Python's own urllib/http.client/socket to reach the network."
+
+[[tools]]
+id = "curl"
+command = "curl"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "curl"
+
+[[tools.install]]
+manager = "apt"
+package = "curl"
+
+[[tools.install]]
+manager = "system"
+notes = "Base-install binary on macOS and virtually every Linux distro (debian-slim included; alpine needs `apk add curl`). Called exactly one way, once per fan-out item, from fetch_registry.py: curl is resolved to an absolute path via this process's own PATH, then run as `<curl-path> -q --silent --show-error --fail --max-time <per_request_timeout_s> --noproxy '*' -o <private-tmpfile> -w %{http_code} <url>` with an explicitly EMPTY child environment -- so no .curlrc/CURL_HOME/XDG_CONFIG_HOME/*_PROXY variable on this machine can inject extra options, credentials, or an alternate destination -- against exactly one of two hosts -- registry.npmjs.org (npm) or pypi.org (PyPI) -- GET only, no --location (a redirect is never followed; it degrades to a labeled unknown instead, closing the exactly-two-hosts boundary against a redirect-based escape), no cookies, no auth headers, no credentials of any kind read or sent. Read-only: this play never writes to either registry and never installs or upgrades the packages it asks about. If curl is missing, fails to spawn, or a single request times out or is rate-limited (429), that ONE package's row degrades to a labeled unknown -- never a crash, never a nonzero exit from fetch_registry.py itself (mirrors mcp-doctor/probe.py's per-item degrade discipline) -- and the play as a whole still exits 0 as long as discover_packages.py itself produced a valid inventory and per_request_timeout_s was itself a valid in-range parameter (an out-of-range or non-integer supplied value is a contract violation and fails the whole run closed, never silently clamped)."

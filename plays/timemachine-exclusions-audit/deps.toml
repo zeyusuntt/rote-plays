@@ -1,0 +1,45 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; the resource script is stdlib-only (subprocess, json, os, sys, re, platform, plistlib, time, concurrent.futures)."
+
+[[tools]]
+id = "tmutil"
+command = "tmutil"
+required = false
+
+[[tools.install]]
+manager = "system"
+notes = "macOS builtin (the Time Machine CLI); not installable via brew or apt, and this play never tries. Only `tmutil isexcluded <path> ...` is called, batched across several paths per invocation, never with sudo, and this play never asks tmutil to add/remove an exclusion. Missing, erroring, or timing out degrades check_exclusions to a labeled unknown row per path in the affected batch rather than failing the whole step; on Linux this tool does not exist and is never invoked."
+
+[[tools]]
+id = "xattr"
+command = "xattr"
+required = false
+
+[[tools.install]]
+manager = "system"
+notes = "macOS builtin. Only `xattr -p com.apple.metadata:com_apple_backup_excludeItem <path>` is called, one read per path, never a write (`-w`/`-d`) against any path this play discovers itself -- the play's own live-bed proof sets that attribute only on a scratch directory it creates for the purpose. Absence of the attribute (exit 1, \"No such xattr\") is the common, expected case and is read as data, not an error."
+
+[[tools]]
+id = "defaults"
+command = "defaults"
+required = false
+
+[[tools.install]]
+manager = "system"
+notes = "macOS builtin. Only `defaults export /Library/Preferences/com.apple.TimeMachine -` is called (a read), once per run, to look for a system-wide SkipPaths list -- never a `defaults write`. This domain has been readable without sudo on every machine this play was built against; if it is not on yours (permissions, SIP configuration), that single source degrades to a labeled unknown and every other check in this play still runs."

@@ -1,0 +1,35 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; all three resource scripts are stdlib-only (subprocess, json, os, re, sys)."
+
+[[tools]]
+id = "git"
+command = "git"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "git"
+
+[[tools.install]]
+manager = "apt"
+package = "git"
+
+[[tools.install]]
+manager = "system"
+notes = "Any git 2.x on PATH. Only long-stable, version-independent primitives are used -- git rev-parse, git log --format with %H/%s/%B, git config --get -- no exotic flags, no write commands, no network fetch/push."

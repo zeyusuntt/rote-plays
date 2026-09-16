@@ -1,0 +1,18 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; all three resource scripts are stdlib-only (re, os, sys, stat, json, subprocess, concurrent.futures). parse_rc.py only ever opens files with Python's own open() -- it never spawns a shell or sources anything. walk_path.py only stats/reads symlinks under the process's own $PATH. resolve.py is the only script that spawns a child process, and only for a fixed, hardcoded allowlist of version-probe binaries (python3, python, node, git, curl, ruby, go, rustc, java), one bounded-timeout call each, only when probe_versions=1 (opt-in; 0 by default), and only after a realpath/ownership/write-permission trust check on the exact resolved executable -- see resolve.py PROBE SAFETY."

@@ -1,0 +1,8 @@
+schema_version: 1
+kind: process.exec
+status:
+  exit: { kind: code, code: 0 }
+  duration_ms: 640
+  timeout_ms: 90000
+stdout: resources/presentation-fixtures/check_exclusions/stdout.json
+stderr: resources/presentation-fixtures/check_exclusions/stderr.txt

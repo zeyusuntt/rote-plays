@@ -1,0 +1,31 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; both resource scripts are stdlib-only (discover.py: json, os, re, sys, tempfile; probe.py: json, os, select, signal, subprocess, sys, time). Reading ~/.codex/config.toml needs the stdlib tomllib module, which only ships from Python 3.11 onward -- on an older interpreter (e.g. a 3.9/3.10 install shadowing a newer one earlier on PATH) that one source degrades to a narrow fallback TOML reader instead of losing codex coverage; every other source is unaffected. select/signal/subprocess are POSIX-only, present on every macOS and Linux host this play targets. probe.py also shells out to the `ps` binary (declared as its own tool entry below) to verify a spawned process group is actually clear of live members before declaring cleanup done -- see probe.py's terminate_process_group(). This play extends the published mcp-context-tax engine (same discover/probe mechanics, same safety properties) to add cold-start timing and config-drift diagnosis; nothing here regresses that engine's process-group termination, minimal env allowlist, TOML fallback, redaction, or separator hygiene."
+
+[[tools]]
+id = "ps"
+command = "ps"
+required = false
+
+[[tools.install]]
+manager = "apt"
+package = "procps"
+
+[[tools.install]]
+manager = "system"
+notes = "Base-install binary on macOS and full Linux distros, but NOT present in slim/minimal container images (debian-slim, alpine) -- install procps there. Called exactly one way: `ps -o pid=,stat= -g <pgid>` inside probe.py's terminate_process_group(), to verify a spawned server's process group is actually clear of live members before declaring cleanup done (zombie-aware: rows in state Z read as already-exited). If ps is missing, fails, times out, or -g is unsupported (BusyBox ps), the group state is treated as UNKNOWN and the code escalates to SIGKILL on the whole group instead of skipping it -- ps absence can never leak a server process, only make the shutdown less gentle. Declared as its own entry (rather than prose-only) after a dependency audit flagged the undeclared reach."

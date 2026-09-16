@@ -1,0 +1,8 @@
+schema_version: 1
+kind: process.exec
+status:
+  exit: { kind: code, code: 0 }
+  duration_ms: 4
+  timeout_ms: 10000
+stdout: resources/presentation-fixtures/locate_histories/stdout.json
+stderr: resources/presentation-fixtures/locate_histories/stderr.txt

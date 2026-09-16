@@ -1,0 +1,8 @@
+schema_version: 1
+kind: process.exec
+status:
+  exit: { kind: code, code: 0 }
+  duration_ms: 38
+  timeout_ms: 35000
+stdout: resources/presentation-fixtures/scan/stdout.json
+stderr: resources/presentation-fixtures/scan/stderr.txt

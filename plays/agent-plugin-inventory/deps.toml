@@ -1,0 +1,18 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; both resource scripts are stdlib-only (json, os, re, stat, sys, time, datetime). Reading ~/.codex/config.toml needs the stdlib tomllib module, which only ships from Python 3.11 onward -- on an older interpreter that one source degrades to a narrow fallback TOML reader instead of losing Codex coverage; every other source is unaffected. Plugin cache directories are measured with a pure-Python os.scandir walk (no `du` dependency, matching agent-disk-tax's own approach), bounded by a defensive per-run file-count budget so a pathologically large cache tree cannot exceed the inventory step's own timeout."

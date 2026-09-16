@@ -1,0 +1,18 @@
+schema_version = 1
+
+[[tools]]
+id = "python3"
+command = "python3"
+required = true
+
+[[tools.install]]
+manager = "brew"
+package = "python@3"
+
+[[tools.install]]
+manager = "apt"
+package = "python3"
+
+[[tools.install]]
+manager = "system"
+notes = "Any Python 3.9+ on PATH; both resource scripts are stdlib-only (find_pythons.py: json, os, re, subprocess, sys, time; probe_ssl.py: json, subprocess, sys, time). The play's ONE job is diagnosing TLS trust stores across every python3/python this orchestrating interpreter finds on PATH, so it also shells out -- once per discovered interpreter -- to that interpreter itself with a fixed -c script (json, os, socket, ssl, sys, time, all stdlib on every target too); no target python needs anything beyond stdlib to be probed, though a broken one is exactly what this play is built to find."

@@ -1,0 +1,239 @@
+{
+  "ok": true,
+  "totals": {
+    "plugin_count": 6,
+    "plugin_enabled_count": 4,
+    "plugin_disabled_count": 1,
+    "plugin_enabled_unknown_count": 1,
+    "plugin_cache_inaccessible_count": 0,
+    "plugin_cache_not_applicable_count": 1,
+    "personal_skill_count": 2,
+    "plugin_skill_count": 3,
+    "marketplace_count": 3,
+    "marketplace_unknown_staleness_count": 1,
+    "codex_count": 3,
+    "codex_enabled_count": 2,
+    "stale_days": 30
+  },
+  "plugins": [
+    {
+      "key": "broken-plugin@marketplace-beta",
+      "name": "broken-plugin",
+      "marketplace": "marketplace-beta",
+      "version": "1.0.0",
+      "scope": "user",
+      "installed_at": "2026-02-14T11:11:28.000Z",
+      "last_updated": "2026-02-14T11:11:28.000Z",
+      "enabled": true,
+      "cache_dir_status": "missing",
+      "cache_size_bytes": null,
+      "cache_partial": false,
+      "harness": "claude"
+    },
+    {
+      "key": "cacheless-plugin@marketplace-gamma",
+      "name": "cacheless-plugin",
+      "marketplace": "marketplace-gamma",
+      "version": "0.1.0",
+      "scope": "user",
+      "installed_at": null,
+      "last_updated": null,
+      "enabled": true,
+      "cache_dir_status": "no-install-path",
+      "cache_size_bytes": null,
+      "cache_partial": false,
+      "harness": "claude"
+    },
+    {
+      "key": "empty-plugin@marketplace-gamma",
+      "name": "empty-plugin",
+      "marketplace": "marketplace-gamma",
+      "version": "1.0.0",
+      "scope": "user",
+      "installed_at": "2026-08-18T11:11:28.000Z",
+      "last_updated": "2026-08-18T11:11:28.000Z",
+      "enabled": true,
+      "cache_dir_status": "empty",
+      "cache_size_bytes": null,
+      "cache_partial": false,
+      "harness": "claude"
+    },
+    {
+      "key": "quiet-plugin@marketplace-beta",
+      "name": "quiet-plugin",
+      "marketplace": "marketplace-beta",
+      "version": "0.3.0",
+      "scope": "project",
+      "installed_at": "2026-07-04T11:11:28.000Z",
+      "last_updated": "2026-08-23T11:11:28.000Z",
+      "enabled": null,
+      "cache_dir_status": "present",
+      "cache_size_bytes": 102,
+      "cache_partial": false,
+      "harness": "claude"
+    },
+    {
+      "key": "report-plugin@marketplace-alpha",
+      "name": "report-plugin",
+      "marketplace": "marketplace-alpha",
+      "version": "2.1.0",
+      "scope": "user",
+      "installed_at": "2026-06-04T11:11:28.000Z",
+      "last_updated": "2026-08-13T11:11:28.000Z",
+      "enabled": false,
+      "cache_dir_status": "present",
+      "cache_size_bytes": 47,
+      "cache_partial": false,
+      "harness": "claude"
+    },
+    {
+      "key": "widget-plugin@marketplace-alpha",
+      "name": "widget-plugin",
+      "marketplace": "marketplace-alpha",
+      "version": "1.0.0",
+      "scope": "user",
+      "installed_at": "2026-05-05T11:11:28.000Z",
+      "last_updated": "2026-08-31T11:11:28.000Z",
+      "enabled": true,
+      "cache_dir_status": "present",
+      "cache_size_bytes": 91,
+      "cache_partial": false,
+      "harness": "claude"
+    }
+  ],
+  "personal_skills": [
+    {
+      "name": "Shared-Widget",
+      "owner_kind": "personal",
+      "owner_label": "personal",
+      "description": "Personal skill sharing a name (different case) with a plugin skill.",
+      "mtime_epoch": 1788300240.0
+    },
+    {
+      "name": "demo-note-taker",
+      "owner_kind": "personal",
+      "owner_label": "personal",
+      "description": "Take and organize quick personal notes during a session.",
+      "mtime_epoch": 1788300180.0
+    }
+  ],
+  "plugin_skills": [
+    {
+      "name": "shared-widget",
+      "owner_kind": "plugin",
+      "owner_label": "quiet-plugin@marketplace-beta",
+      "description": "Quiet-plugin's own take on the shared widget skill name.",
+      "mtime_epoch": 1788300120.0
+    },
+    {
+      "name": "reporter",
+      "owner_kind": "plugin",
+      "owner_label": "report-plugin@marketplace-alpha",
+      "description": null,
+      "mtime_epoch": 1788300060.0
+    },
+    {
+      "name": "widget-tool",
+      "owner_kind": "plugin",
+      "owner_label": "widget-plugin@marketplace-alpha",
+      "description": "Build and inspect example widgets end to end.",
+      "mtime_epoch": 1788300000.0
+    }
+  ],
+  "marketplaces": [
+    {
+      "name": "marketplace-alpha",
+      "last_updated": "2026-08-31T11:11:28.000Z",
+      "repo": "example-org/marketplace-alpha",
+      "age_days": 2.0
+    },
+    {
+      "name": "marketplace-beta",
+      "last_updated": "2026-07-19T11:11:28.000Z",
+      "repo": "example-org/marketplace-beta",
+      "age_days": 45.0
+    },
+    {
+      "name": "marketplace-gamma",
+      "last_updated": null,
+      "repo": "example-org/marketplace-gamma",
+      "age_days": null
+    }
+  ],
+  "codex": [
+    {
+      "key": "codex-tool-one@codex-marketplace",
+      "name": "codex-tool-one",
+      "marketplace": "codex-marketplace",
+      "enabled": true,
+      "cache_dir_status": "present",
+      "marketplace_last_updated": "2026-08-28T11:11:28Z",
+      "harness": "codex"
+    },
+    {
+      "key": "codex-tool-three@codex-marketplace",
+      "name": "codex-tool-three",
+      "marketplace": "codex-marketplace",
+      "enabled": true,
+      "cache_dir_status": "missing",
+      "marketplace_last_updated": "2026-08-28T11:11:28Z",
+      "harness": "codex"
+    },
+    {
+      "key": "codex-tool-two@codex-marketplace",
+      "name": "codex-tool-two",
+      "marketplace": "codex-marketplace",
+      "enabled": false,
+      "cache_dir_status": "present",
+      "marketplace_last_updated": "2026-08-28T11:11:28Z",
+      "harness": "codex"
+    }
+  ],
+  "flags": {
+    "name_collision_suspect": [
+      {
+        "name": "Shared-Widget/shared-widget",
+        "detail": "same skill name from 2 source(s): personal, quiet-plugin@marketplace-beta -- which one wins is harness-defined (case varies: Shared-Widget, shared-widget)",
+        "owners": [
+          "personal",
+          "quiet-plugin@marketplace-beta"
+        ]
+      }
+    ],
+    "broken_install_suspect": [
+      {
+        "key": "broken-plugin@marketplace-beta",
+        "harness": "claude",
+        "detail": "cache directory missing"
+      },
+      {
+        "key": "empty-plugin@marketplace-gamma",
+        "harness": "claude",
+        "detail": "cache directory empty"
+      },
+      {
+        "key": "codex-tool-three@codex-marketplace",
+        "harness": "codex",
+        "detail": "cache directory missing"
+      }
+    ],
+    "stale_suspect": [
+      {
+        "name": "marketplace-beta",
+        "detail": "last synced 45.0 day(s) ago (>= 30)"
+      }
+    ],
+    "disabled_but_cached": [
+      {
+        "key": "report-plugin@marketplace-alpha",
+        "harness": "claude",
+        "detail": "disabled but cached -- 47 byte(s) on disk"
+      },
+      {
+        "key": "codex-tool-two@codex-marketplace",
+        "harness": "codex",
+        "detail": "disabled but cached -- on disk, size not measured (best-effort check)"
+      }
+    ]
+  }
+}

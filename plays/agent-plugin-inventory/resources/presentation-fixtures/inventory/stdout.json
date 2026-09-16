@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "generated_at": "2026-09-02T09:15:00.000000+00:00",
+  "claude_plugins_status": "ok",
+  "claude_settings_status": "ok",
+  "claude_skills_status": "ok",
+  "claude_marketplaces_status": "ok",
+  "codex_config_status": "ok",
+  "codex_toml_reader": "fallback",
+  "packed_plugins": "broken-plugin@marketplace-beta\u001fbroken-plugin\u001fmarketplace-beta\u001f1.0.0\u001fuser\u001f2026-02-14T11:11:28.000Z\u001f2026-02-14T11:11:28.000Z\u001f1\u001fmissing\u001f\u001f0\u001ecacheless-plugin@marketplace-gamma\u001fcacheless-plugin\u001fmarketplace-gamma\u001f0.1.0\u001fuser\u001f\u001f\u001f1\u001fno-install-path\u001f\u001f0\u001eempty-plugin@marketplace-gamma\u001fempty-plugin\u001fmarketplace-gamma\u001f1.0.0\u001fuser\u001f2026-08-18T11:11:28.000Z\u001f2026-08-18T11:11:28.000Z\u001f1\u001fempty\u001f\u001f0\u001equiet-plugin@marketplace-beta\u001fquiet-plugin\u001fmarketplace-beta\u001f0.3.0\u001fproject\u001f2026-07-04T11:11:28.000Z\u001f2026-08-23T11:11:28.000Z\u001f\u001fpresent\u001f102\u001f0\u001ereport-plugin@marketplace-alpha\u001freport-plugin\u001fmarketplace-alpha\u001f2.1.0\u001fuser\u001f2026-06-04T11:11:28.000Z\u001f2026-08-13T11:11:28.000Z\u001f0\u001fpresent\u001f47\u001f0\u001ewidget-plugin@marketplace-alpha\u001fwidget-plugin\u001fmarketplace-alpha\u001f1.0.0\u001fuser\u001f2026-05-05T11:11:28.000Z\u001f2026-08-31T11:11:28.000Z\u001f1\u001fpresent\u001f91\u001f0",
+  "plugin_count": 6,
+  "packed_skills": "Shared-Widget\u001fpersonal\u001fpersonal\u001fPersonal skill sharing a name (different case) with a plugin skill.\u001f1788300240.0\u001edemo-note-taker\u001fpersonal\u001fpersonal\u001fTake and organize quick personal notes during a session.\u001f1788300180.0\u001eshared-widget\u001fplugin\u001fquiet-plugin@marketplace-beta\u001fQuiet-plugin's own take on the shared widget skill name.\u001f1788300120.0\u001ereporter\u001fplugin\u001freport-plugin@marketplace-alpha\u001f\u001f1788300060.0\u001ewidget-tool\u001fplugin\u001fwidget-plugin@marketplace-alpha\u001fBuild and inspect example widgets end to end.\u001f1788300000.0",
+  "skill_count": 5,
+  "packed_marketplaces": "marketplace-alpha\u001f2026-08-31T11:11:28.000Z\u001fexample-org/marketplace-alpha\u001emarketplace-beta\u001f2026-07-19T11:11:28.000Z\u001fexample-org/marketplace-beta\u001emarketplace-gamma\u001f\u001fexample-org/marketplace-gamma",
+  "marketplace_count": 3,
+  "packed_codex": "codex-tool-one@codex-marketplace\u001fcodex-tool-one\u001fcodex-marketplace\u001f1\u001fpresent\u001f2026-08-28T11:11:28Z\u001ecodex-tool-three@codex-marketplace\u001fcodex-tool-three\u001fcodex-marketplace\u001f1\u001fmissing\u001f2026-08-28T11:11:28Z\u001ecodex-tool-two@codex-marketplace\u001fcodex-tool-two\u001fcodex-marketplace\u001f0\u001fpresent\u001f2026-08-28T11:11:28Z",
+  "codex_count": 3
+}
