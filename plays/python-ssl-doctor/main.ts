@@ -4,13 +4,13 @@
  * ---
  * name: python-ssl-doctor
  * description: 'One HTTPS request fails with CERTIFICATE_VERIFY_FAILED and silently breaks every tool built on that python -- the real-incident hook here: a single shadowed interpreter failing exactly that way once quietly broke four separate downstream tools before anyone thought to check which python each one was actually running. Finds every python3 (and bare python) on this machine''s PATH. Fingerprints each install''s source (python.org, homebrew, conda, pyenv, uv-managed, system CLT, or unknown), then runs one bounded TLS handshake per python against pypi.org:443 -- its only network activity. Every failure gets an exact, source-specific fix (Install Certificates.command, conda install ca-certificates, or an openssl/certifi note) plus a universal pip install certifi fallback. Also reports ssl module linkage and whether certifi/SSL_CERT_FILE/REQUESTS_CA_BUNDLE are set -- names and a flag only, never the value or file contents. A handshake timeout degrades only that python to an "unreachable, not necessarily a cert problem" verdict. TRUST BOUNDARY: executes every matching python on PATH with fixed -c scripts carrying no user input, gated by a fail-closed pre-exec check (regular file, owned by root or you, never world-writable, never in a world-writable dir lacking the sticky bit) -- a file failing this check is reported as discovered, never run. Read-only otherwise, no credentials transmitted; needs only python3.'
- * version: 0.1.4
+ * version: 0.1.5
  * source_url: https://play.modiqo.ai/dotisacat/python-ssl-doctor
  * provenance:
  *   author: sunzeyu06@gmail.com
  *   workspace: python-ssl-doctor
  * metadata:
- *   version: 0.1.4
+ *   version: 0.1.5
  *   rote_version: 0.77.0
  *   status: released
  *   kind: atomic

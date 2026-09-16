@@ -6,7 +6,7 @@ its shape and field names so the presentation body can render both
 sources through one table.
 
 Codex's on-disk transcript schema is its own thing, and has visibly
-changed shape across the versions on this machine: every record is
+changed shape across Codex versions: every record is
 {"timestamp", "type", "payload": {...}}, but "type" here is only ever
 session_meta | turn_context | response_item | event_msg | compacted |
 world_state, and the SIGNAL this digest wants -- an actual tool
@@ -27,14 +27,14 @@ Tool-call tallying, one source per family, no double counting:
   - response_item payload.type in (function_call, custom_tool_call) ->
     name = payload.name
   - response_item payload.type == local_shell_call -> name = "shell"
-    (older/standard Codex CLI shape; not seen on this machine, handled
+    (older/standard Codex CLI shape; rare in newer transcripts, handled
     defensively since the play spec calls out schema drift across
     versions)
   - response_item payload.type in (web_search_call, tool_search_call) ->
     name = "web_search" / "tool_search"
   - event_msg payload.type == mcp_tool_call_end -> name =
     "mcp:<payload.invocation.tool>" (there is no response_item
-    counterpart for MCP calls in the transcripts on this machine, so this
+    counterpart for MCP calls in Codex transcripts, so this
     is the only source for them and cannot double count)
 commands_run counts whichever of the above resolved to a shell-like name
 (exec_command, exec, shell, run, bash, sh) -- a COUNT only, never the
@@ -120,7 +120,7 @@ def safe_int(value):
 def home_redact(path):
     """Redact a path for output. An absolute path outside $HOME can still
     embed the same identifying directory names $HOME redaction exists to
-    hide -- e.g. an agent tool's own scratch sandbox (this machine's
+    hide -- e.g. an agent tool's own scratch sandbox (a typical macOS
     /private/tmp/claude-<uid>/<slugged-home>/<session>/... convention slugs
     the user's home path right back into the sandbox root) -- so any
     absolute path that isn't under $HOME is collapsed to a generic marker

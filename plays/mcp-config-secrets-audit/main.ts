@@ -4,13 +4,13 @@
  * ---
  * name: mcp-config-secrets-audit
  * description: 'An API key written straight into an MCP config file is readable by anything that can read your home directory. Reads the same harness-owned config files as our other MCP plays (Claude Code, Claude Desktop, Cursor, Codex, Windsurf) and classifies every env var value each declared server carries by SHAPE, at the moment it is read off disk: a literal secret-shape (an OpenAI-style sk- key, a GitHub ghp_ token, an AWS AKIA key, a JWT, or a high-entropy token) versus safe indirection ($VAR, ${VAR}, or empty) versus a plain literal. You get per-file counts, and the single combination that matters most flagged as the top finding: a file that is world- or group-readable AND holds at least one inline secret-shaped value. A NEVER EXECUTED text advisory appears when a secret-shaped value is found: move it to your OS keychain or a local env manager -- MCP configs travel in backups and dotfile repos. Disabled server blocks are still audited -- an ignored config block can still hold a secret in cleartext. The raw value itself never survives past that one read: never packed into this play''s own data, never printed, including in its own JSON result -- only a var NAME, shape, 4-character preview, and length are kept. Read-only, no credentials transmitted, no network calls, no server spawned, no handshake or probe -- only files and their permission bits are read; needs only python3.'
- * version: 0.1.4
+ * version: 0.1.5
  * source_url: https://play.modiqo.ai/dotisacat/mcp-config-secrets-audit
  * provenance:
  *   author: sunzeyu06@gmail.com
  *   workspace: mcp-config-secrets-audit
  * metadata:
- *   version: 0.1.4
+ *   version: 0.1.5
  *   rote_version: 0.77.0
  *   status: released
  *   kind: atomic

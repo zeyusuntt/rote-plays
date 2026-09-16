@@ -242,9 +242,9 @@ def is_trusted_executable(candidate):
 
     One deliberate, measured refinement over that sibling check: a bare
     group-write bit is trusted when the file's group is one this same
-    user already belongs to (verified live on this machine: a default
+    user already belongs to (verified live in practice: a default
     macOS conda/Anaconda install ships its own interpreter binary mode
-    0775, group `staff` -- this user's own primary group -- which a
+    0775, group `staff` -- the invoking user's primary group -- which a
     strict "reject any group-write bit" rule would wrongly brand
     untrusted and silently stop fingerprinting/probing, defeating this
     play's most common real-world case for no real safety gain, since a

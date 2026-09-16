@@ -4,13 +4,13 @@
  * ---
  * name: command-shadow-audit
  * description: 'When you type python3, what ACTUALLY runs -- and what did it silently replace? Statically parses your shell rc files (~/.zshrc, ~/.zprofile, ~/.bashrc, ~/.bash_profile, ~/.profile, and what they `source` one level deep) for alias, function, and PATH-export definitions, and walks this process''s own $PATH for a watchlist of common commands, recording each hit''s directory, symlink status, and version-manager convention (asdf, nvm, pyenv, rbenv, conda, brew, or plain system). You get, per command, the winner by the shell''s own precedence (function > alias > first PATH hit) and everything that decision silently shadows. Optionally reads --version from duplicates for a small fixed runtime allowlist, one 3-second-capped call each, only when probe_versions=1. Severity: a function shadowing a real binary is worst, a PATH duplicate with a different feature version is next, a same-version duplicate is informational. This play never executes your shell rc files and never opens an interactive shell -- every alias and function it reports comes from statically reading the rc files'' own text, never from running them. Read-only, no credentials, no network; the only things this play ever executes are those fixed, capped version probes (python3, python, node, git, curl, ruby, go, rustc, java); needs only python3.'
- * version: 0.1.4
+ * version: 0.1.5
  * source_url: https://play.modiqo.ai/dotisacat/command-shadow-audit
  * provenance:
  *   author: sunzeyu06@gmail.com
  *   workspace: command-shadow-audit
  * metadata:
- *   version: 0.1.4
+ *   version: 0.1.5
  *   rote_version: 0.77.0
  *   status: released
  *   kind: atomic
@@ -382,7 +382,7 @@ lines.push("  runtime-defined functions/aliases in a LIVE shell session (only st
 lines.push("  whether a `source`/`.` line's own guard (e.g. `[ -f X ] &&`) actually evaluates true -- the directive is detected and followed, the guard is not evaluated");
 lines.push("  whether an alias/function marked [conditional] above actually lands in a real shell -- it was found inside an if/case branch this play cannot evaluate, so it is reported as a candidate, not a confirmed live definition");
 lines.push("  alias/function definitions more than one `source` hop deep");
-lines.push("  unalias/unfunction directives that undo an earlier definition (a real line on the machine this play was built on removes several guard functions right after defining them)");
+lines.push("  unalias/unfunction directives that undo an earlier definition (a real-world rc line can remove several guard functions right after defining them)");
 lines.push("  which single combination of these rc files a real login/interactive shell actually sources on start -- this play reads all seven, always, as a static superset");
 lines.push("  which shell (bash vs zsh) will actually read these rc files -- a command marked function* above has a same-named alias too, and the two disagree on which wins (see the NOTE in SHADOWS DETAIL)");
 lines.push("  the trust of the python3 interpreter that runs this play's own three steps -- like every play on this host, rote's own Process Portability Contract requires invoking installed tools by bare PATH name (never a pinned absolute path; see `rote grammar steps`), so `python3` here is resolved from this process's own inherited $PATH once, before any of this play's own PATH-shadow analysis above has even started; a play running as a rote step has no way to verify that bootstrapping step about itself");

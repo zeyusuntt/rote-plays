@@ -4,13 +4,13 @@
  * ---
  * name: session-digest
  * description: 'You stepped away and your agents kept working. What did they actually do? Digests your recent LOCAL agent session transcripts into "what happened while you were away" -- Claude Code transcripts under ~/.claude/projects, plus Codex transcripts under ~/.codex/sessions when present -- into counts only: sessions, duration, tool calls by tool, files edited/written, shell commands run, errors, and token usage totals where the transcript records them. Claude Code and Codex use different JSONL record shapes across versions, so each source gets its own defensive parser that treats an unrecognized record shape as uninformative rather than fatal, degrading just that one file, never the whole run, on a genuine parse disaster -- degraded rows are rendered honestly rather than hidden. The trust line is literal: message text, prompt content, and command argv are never read into the output -- shell commands run are a COUNT only, file paths are reported home-redacted, and nothing here is ever quoted back to you, only counted. Independent implementation sharing no code with Anthropics Apache-2.0 receipts plugin that inspired it. Read-only, no credentials, no network; needs only python3.'
- * version: 0.1.5
+ * version: 0.1.6
  * source_url: https://play.modiqo.ai/dotisacat/session-digest
  * provenance:
  *   author: sunzeyu06@gmail.com
  *   workspace: session-digest
  * metadata:
- *   version: 0.1.5
+ *   version: 0.1.6
  *   rote_version: 0.77.0
  *   status: released
  *   kind: atomic

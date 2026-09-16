@@ -81,8 +81,8 @@ VALID_HARNESSES = ("all", "claude", "codex")
 CLAUDE_PROJECTS_ROOT = os.path.expanduser("~/.claude/projects")
 CODEX_SESSIONS_ROOT = os.path.expanduser("~/.codex/sessions")
 
-# The exact layout probed live on this machine: rollout-<UTC timestamp with
-# "-" in place of ":">-<uuid>.jsonl. See module docstring.
+# The exact layout verified live against real Codex installs: rollout-<UTC
+# timestamp with "-" in place of ":">-<uuid>.jsonl. See module docstring.
 _CODEX_ROLLOUT_RE = re.compile(
     r"^rollout-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}-"
     r"([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"

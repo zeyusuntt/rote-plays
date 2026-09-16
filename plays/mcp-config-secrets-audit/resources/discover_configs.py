@@ -177,9 +177,9 @@ _SK_RE = re.compile(r"^sk-[A-Za-z0-9_-]{10,}$")
 _GHP_RE = re.compile(r"^ghp_[A-Za-z0-9]{16,}$")
 _AKIA_RE = re.compile(r"^AKIA[A-Z0-9]{12,}$")
 # High-entropy catch-all charset deliberately EXCLUDES "/" and whitespace:
-# real MCP configs on this machine's own harnesses carry plenty of 40+
+# real MCP configs across installed harnesses carry plenty of 40+
 # character absolute file paths and JSON-ish blobs in their env blocks
-# (verified live against ~/.codex/config.toml's node_repl.env), and both
+# (verified live against a real ~/.codex/config.toml server's env block), and both
 # use "/" or braces/colons/quotes routinely -- excluding those characters
 # trades a little recall (a base64 secret that happens to use "/") for far
 # fewer false "inline secret" flags on ordinary path-shaped values. The

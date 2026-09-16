@@ -10,8 +10,8 @@ step's whole job.
 
 Matching an agent-shaped row is a two-tier decision, deliberately narrower
 than "signature substring anywhere in the command line" (that used to
-false-positive on this very machine: macOS's own `xprotectd` and
-`CursorUIViewService` contain the substrings "rote" and "cursor" purely by
+false-positive on macOS's own `xprotectd` and
+`CursorUIViewService`, which contain the substrings "rote" and "cursor" purely by
 letter coincidence, and would otherwise be reported as agent processes):
   1. exec identity — every "/"-delimited component of the executable's own
      path (the first whitespace-delimited token of args, before any of its
@@ -21,7 +21,7 @@ letter coincidence, and would otherwise be reported as agent processes):
      copilot, rote). Checking every path component, not just the final
      basename, is required to catch real versioned installs where the
      final component is just a version number, e.g.
-     ~/.local/share/claude/versions/2.1.251 -- the identifying "claude" is
+     ~/.local/share/claude/versions/0.0.0 -- the identifying "claude" is
      a directory segment, not the basename. Requiring a whole
      separator-delimited segment (not a substring) is what excludes
      xprotectd/CursorUIViewService: neither has a path component whose
@@ -240,7 +240,7 @@ def is_claude_exec(args):
 
 
 # Session-id join signal for classify.py's sessions feature. Two argv shapes
-# were verified live on the machine this play was built on:
+# were verified live in practice:
 #   1. --session-id <uuid> / --session-id=<uuid> -- a forked/new session's
 #      own id, paired with --fork-session and a --resume <path-to-source>
 #      in the CLI's fork-from-an-existing-session shape.

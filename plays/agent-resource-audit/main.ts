@@ -4,13 +4,13 @@
  * ---
  * name: agent-resource-audit
  * description: 'Your agents keep running after you stop typing, and what they hold is invisible until the fans come on. You get every agent-related process on this machine right now -- Claude Code, Codex, Cursor, Windsurf, Copilot, Aider, opencode, gemini-cli, MCP servers, and their companion processes -- grouped by kind and ranked by memory, the total agent footprint measured against your system RAM, and every Claude Code or Codex session file on disk, matched to a live process where one exists. A process is flagged orphan-suspect only when it is reparented to launchd, agent-shaped, and has run more than ten minutes -- a suspicion, never a certainty; known daemons and desktop-app helpers are excluded outright. Codex sessions can''t be matched to a process the way Claude Code''s can, so every one is reported as resumable, with a separate note when a codex process is actually running. Session files are read by filesystem metadata only, never opened. Kill commands and resume commands are printed as text for you to read and run yourself; nothing here is ever executed on your behalf. Read-only, no credentials, no network, never reads environment variables or file contents; needs only python3.'
- * version: 0.2.10
+ * version: 0.2.11
  * source_url: https://play.modiqo.ai/dotisacat/agent-resource-audit
  * provenance:
  *   author: sunzeyu06@gmail.com
  *   workspace: agent-resource-audit
  * metadata:
- *   version: 0.2.10
+ *   version: 0.2.11
  *   rote_version: 0.77.0
  *   status: released
  *   kind: atomic

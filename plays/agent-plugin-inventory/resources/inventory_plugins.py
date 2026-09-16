@@ -195,7 +195,7 @@ CACHE_WALK_FILE_BUDGET = 200_000
 # marketplace checkouts under ~/.claude/plugins/marketplaces, because a
 # plugin's own SKILL.md is commonly a symlink from its cache directory back
 # to the marketplace checkout (confirmed live: real Claude Code plugin
-# installs on this machine do this) rather than a physical copy. A crafted
+# installs commonly do this) rather than a physical copy. A crafted
 # or corrupted installPath, or a directory/file symlink discovered along
 # the way, that resolves OUTSIDE this whole tree is refused rather than
 # scanned or opened -- see _is_contained() and its call sites in
@@ -537,8 +537,8 @@ def pack_skill_row(name, owner_kind, owner_label, skill_md_path):
 
 def collect_personal_skills(skills_dir):
     """Non-recursive: one entry per item directly under ~/.claude/skills.
-    Each entry is resolved through any symlink chain (the common shape on
-    this machine) to find its own SKILL.md; an entry that does not resolve
+    Each entry is resolved through any symlink chain (a common shape in
+    practice) to find its own SKILL.md; an entry that does not resolve
     to a directory containing SKILL.md is skipped, not guessed at."""
     rows = []
     if not os.path.isdir(skills_dir):

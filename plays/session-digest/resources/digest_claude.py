@@ -104,7 +104,7 @@ def safe_int(value):
 def home_redact(path):
     """Redact a path for output. An absolute path outside $HOME can still
     embed the same identifying directory names $HOME redaction exists to
-    hide -- e.g. an agent tool's own scratch sandbox (this machine's
+    hide -- e.g. an agent tool's own scratch sandbox (a typical macOS
     /private/tmp/claude-<uid>/<slugged-home>/<session>/... convention slugs
     the user's home path right back into the sandbox root) -- so any
     absolute path that isn't under $HOME is collapsed to a generic marker

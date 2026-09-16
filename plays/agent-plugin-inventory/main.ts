@@ -4,13 +4,13 @@
  * ---
  * name: agent-plugin-inventory
  * description: 'Your harness extensions accumulate like browser toolbars -- this inventories them. Covers Claude Code plugins (name, version, scope, marketplace, timestamps, cross-referenced against enabledPlugins, measured on disk as present/missing/empty/inaccessible with a byte size), personal skills (name, description first line truncated to 80 characters, mtime -- no other file content is ever read), known marketplaces (name, last-sync when actually recorded), and Codex plugin-equivalents from ~/.codex/config.toml when present -- each source degrades alone, never the rest of the report, when unreadable or unparseable. FOUR FLAGS, always "-suspect", never a certainty: name-collision (a skill name found under more than one owner); broken-install (an installed plugin''s own cache directory missing or empty); stale (a marketplace not refreshed in stale_days or more); and disabled-but-cached (a disabled plugin whose cache directory is still present -- a disk note, not a security finding). Every skill description is truncated to 80 characters before this play ever holds it, and no path survives into a diagnostic -- an OS error is reduced to a short, non-secret reason instead. Read-only throughout: edits, deletes, installs, enables, disables, and moves nothing, kills no process, makes no network call of its own; needs only python3.'
- * version: 0.1.4
+ * version: 0.1.5
  * source_url: https://play.modiqo.ai/dotisacat/agent-plugin-inventory
  * provenance:
  *   author: sunzeyu06@gmail.com
  *   workspace: agent-plugin-inventory
  * metadata:
- *   version: 0.1.4
+ *   version: 0.1.5
  *   rote_version: 0.77.0
  *   status: released
  *   kind: atomic

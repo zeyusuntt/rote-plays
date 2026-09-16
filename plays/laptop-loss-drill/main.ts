@@ -4,13 +4,13 @@
  * ---
  * name: laptop-loss-drill
  * description: 'One question, answered with evidence: if this laptop died right now, what would you lose? Two readings joined into a verdict: your last backup (Time Machine consulted read-only via tmutil; unreachable or unconfigured states reported honestly, never papered over) and the work that exists NOWHERE but this disk -- unpushed commits counted against every remote-tracking ref, branches with no upstream at all, stashes, and dirty files, from a bounded sweep of the git repositories under base_dir. Loss claims are conservative: a commit reachable from any pushed ref is never counted as lost. This is loss exposure, not work triage -- it answers what is unrecoverable, not what needs attention. Every git read uses --no-optional-locks with a scrubbed environment; one unreadable repo degrades to a labeled unknown, never a crash. Zero loss renders a positive verdict: backed up and pushed means this laptop is replaceable. Read-only, no credentials, no network; needs only python3 and git.'
- * version: 0.1.4
+ * version: 0.1.5
  * source_url: https://play.modiqo.ai/dotisacat/laptop-loss-drill
  * provenance:
  *   author: sunzeyu06@gmail.com
  *   workspace: laptop-loss-drill
  * metadata:
- *   version: 0.1.4
+ *   version: 0.1.5
  *   rote_version: 0.77.0
  *   status: released
  *   kind: atomic

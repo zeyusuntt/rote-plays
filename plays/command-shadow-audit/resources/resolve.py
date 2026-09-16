@@ -81,9 +81,9 @@ that are left over once those three are taken as fixed points:
              two or more PATH hits for this command were probed and their
              FEATURE versions (the first two dot-components, e.g. "3.10"
              out of "3.10.9") disagree -- the anaconda-python3-vs-newer-
-             python3 failure class this play must surface (verified live
-             on this machine: anaconda's python3 is 3.10.9, a later PATH
-             entry is 3.14.x -- different tomllib availability, same
+             python3 failure class this play must surface (a common real
+             collision: an Anaconda python3 sits earlier on PATH than a
+             newer interpreter -- different tomllib availability, same
              command). Comparison is deliberately major.MINOR, not just
              major: CPython's own scheme has kept major=3 for the entire
              Python 3 era, so a strict first-component-only compare would

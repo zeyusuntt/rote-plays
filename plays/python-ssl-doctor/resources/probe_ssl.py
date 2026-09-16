@@ -201,10 +201,10 @@ def is_trusted_executable(candidate):
     spawns. Identical shape to find_pythons.py's own is_trusted_executable
     -- see that module's docstring for the full rationale, including the
     one deliberate refinement (a group-write bit is trusted when the file's
-    group is one this same user already belongs to -- verified live: a
-    default macOS conda install ships group-writable `staff`, this user's
-    own primary group). Returns (real_path, None) when trusted, or (None,
-    reason) when not."""
+    group is one this same user already belongs to -- verified live in
+    practice: a default macOS conda install ships group-writable `staff`,
+    the invoking user's own primary group). Returns (real_path, None) when
+    trusted, or (None, reason) when not."""
     real = os.path.realpath(candidate)
     try:
         file_stat = os.stat(real)

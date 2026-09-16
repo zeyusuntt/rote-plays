@@ -24,12 +24,12 @@ ONE-LEVEL SOURCE FOLLOW: within each root file only (never within a
 sourced file's own body -- exactly one hop), a line containing a `source X`
 or `. X` / `\\. X` directive is detected by regex, no matter where on the
 line it sits (`[ -f ~/.rote/shell/init.sh ] && source ~/.rote/shell/init.sh`
-is a real line on the machine this play was built on). X is only ever
+is a real-world rc line this pattern needs to handle). X is only ever
 FOLLOWED when it is LITERAL after tilde-expansion: an absolute path (starts
 with "/" once ~ is expanded) containing no "$", backtick, "(" or ")" --
 i.e. no shell variable or command substitution this script would have to
-evaluate to resolve. `$NVM_DIR/nvm.sh`-style targets are real on this
-machine too and are deliberately NOT followed for exactly this reason; they
+evaluate to resolve. `$NVM_DIR/nvm.sh`-style targets are a common shape in
+real rc files and are deliberately NOT followed for exactly this reason; they
 are counted and reported as skipped, not silently dropped. This script does
 not evaluate the `[ -f X ] &&` / `[ -s X ] &&` guards a source line may sit
 behind -- it reports "this rc file contains a source directive for this
@@ -92,12 +92,12 @@ DEFINITIONS CAPTURED per non-comment, non-blank line:
   export_path -- a line assigning the PATH variable itself, with or
               without a leading `export` keyword (`PATH="...":${PATH}"`
               followed by a separate bare `export PATH` line is a real
-              pattern on this machine -- see .zprofile -- so the `export`
+              pattern in practice -- so the `export`
               keyword is optional in the match). Only PATH is matched,
               never any other environment variable, and never a variable
               VALUE beyond the PATH assignment's own right-hand side --
               this script never reports any other exported variable, which
-              is deliberate: this machine's own .zshrc carries real API
+              is deliberate: a real .zshrc can carry real API
               key exports, and this parser's regex is scoped narrowly
               enough that it structurally cannot capture them.
 

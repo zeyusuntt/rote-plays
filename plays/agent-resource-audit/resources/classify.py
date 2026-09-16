@@ -29,7 +29,7 @@ from the row's (200-character-truncated) args, because a long invocation's
 join flag can fall past that truncation boundary (verified live: the VS
 Code extension's `--resume=<uuid>` shape routinely does) and re-deriving it
 from truncated text would silently break the join. Two argv shapes feed
-that field, both verified live on the machine this play was built on: a
+that field, both verified live in practice: a
 forked/new session's own `--session-id <uuid>`, and the VS Code extension's
 in-place `--resume=<uuid>` (bare uuid, not the fork-shape's path form of
 `--resume`) — see enumerate.py for the full reasoning. Codex's process argv
@@ -74,7 +74,7 @@ category that is never orphan-eligible, rather than the one that is:
   5. harness-cli     — args mention claude/codex/aider/opencode and nothing
                        more specific claimed the row first (real installs
                        are often versioned binaries like
-                       ~/.local/share/claude/versions/2.1.251, so this
+                       ~/.local/share/claude/versions/0.0.0, so this
                        checks the full command line, not just argv[0])
   6. helper          — everything else that still matched enumerate.py's
                        agent signatures (e.g. windsurf, gemini-cli, copilot)
@@ -360,9 +360,9 @@ def build_session_pid_map(raw_rows):
     invocation's join flag can fall past that truncation boundary (observed
     live: the VS Code extension's `--resume=<uuid>` shape routinely does),
     which would silently break the join if re-derived from truncated text.
-    When more than one row carries the same uuid (observed live: a
-    bg-pty-host wrapper process and the actual worker it forked both retain
-    the same session_id), the row with the larger rss_kb wins — the heavier
+    When more than one row carries the same uuid (a common shape in
+    practice: a bg-pty-host wrapper process and the actual worker it forked
+    both retain the same session_id), the row with the larger rss_kb wins — the heavier
     process is the one actually doing the session's work, not the thin
     wrapper around it. This is a best-effort tiebreak, not a guarantee."""
     best = {}
@@ -540,7 +540,7 @@ def main():
 
     # Running sessions are never truncated -- there are always few, and they
     # are the ones a person most needs to see. Resumable sessions are capped
-    # (this machine's own on-disk history ran to hundreds of files) so a
+    # (a real on-disk history can run to hundreds of files) so a
     # single step's stdout cannot grow past the runner's output ceiling; the
     # cap is display-only -- totals.resumable above is already the true
     # on-disk count, computed before this slice, so nothing is silently

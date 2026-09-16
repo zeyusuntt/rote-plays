@@ -50,7 +50,7 @@ honest, plainly-labeled unknown.
 
 Emits one JSON object on stdout, always with "ok": true -- every failure mode
 here is a labeled degrade, never a crash, because "backup status unknown" is
-itself the correct answer on plenty of real machines (this one included).
+itself the correct answer on plenty of real machines.
 """
 
 import json
